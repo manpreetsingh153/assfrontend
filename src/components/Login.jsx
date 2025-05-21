@@ -44,6 +44,7 @@ const Login = () => {
             <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
             <div className="g-recaptcha" data-sitekey="your_site_key"></div>
             <button type="submit">Login</button>
+            <div>Don't have an account? <Link to="/">Register</Link></div>
             <p>{message}</p>
         </form>
     );
