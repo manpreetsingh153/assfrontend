@@ -14,11 +14,11 @@ const Login = () => {
  
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // const captchaValue = recaptcha.current.getValue()
-        // if (!captchaValue) {
-        //     setMessage('Please verify the reCAPTCHA!');
-        //     // alert('Please verify the reCAPTCHA!')
-        // }
+        const captchaValue = recaptcha.current.getValue()
+        if (!captchaValue) {
+            setMessage('Please verify the reCAPTCHA!');
+            // alert('Please verify the reCAPTCHA!')
+        }
         try {
             const res = await axios.post(
                 'http://localhost:3001/api/login',
@@ -30,7 +30,7 @@ const Login = () => {
             );
 
             const data = res.data;
-            console.log(data);
+            // console.log(data);
             sessionStorage.setItem('authToken', res.data.token);
             setMessage(data.message || data.error);
 
