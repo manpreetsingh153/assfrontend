@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
 const Login = () => {
@@ -10,12 +10,7 @@ const Login = () => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = window.grecaptcha.getResponse();
-
-        if (!token) {
-            setMessage('Please complete the reCAPTCHA');
-            return;
-        }
+       
         try {
              const res = await axios.post(
                 '/api/login',

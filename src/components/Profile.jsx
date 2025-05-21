@@ -8,8 +8,16 @@ const Profile = () => {
         const fetchUser = async () => {
             try {
                 const response = await axios.get('/api/profile', { withCredentials: true });
-                setUser(response.data);
+                if (response.status === 401 || response.status === 404) {
+                }
+                else
+                    setUser(response.data);
             } catch (error) {
+                if (error.response && error.response.status === 401 || error.response.status === 404 || error.message === 'Unauthorized') {
+                    setTimeout(() => {
+                        navigate('/login');
+                    }, 2000);
+                }
                 console.error('Error fetching profile:', error);
             }
         };
@@ -24,6 +32,7 @@ const Profile = () => {
                 setUser(null);
                 navigate('/login');
             }
+
         } catch (error) {
             console.error('Logout failed:', error);
         }
