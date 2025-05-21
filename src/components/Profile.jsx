@@ -7,7 +7,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axios.get('/api/profile', { withCredentials: true });
+                const response = await axios.get('https://assbackend-859f.onrender.com/api/profile', { withCredentials: true });
                 if (response.status === 401 || response.status === 404) {
                 }
                 else
@@ -27,7 +27,7 @@ const Profile = () => {
     const logout = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.get('/api/logout', { withCredentials: true });
+            const res = await axios.get('https://assbackend-859f.onrender.com/api/logout', { withCredentials: true });
             if (res.data.message === 'Logged out successfully') {
                 setUser(null);
                 navigate('/login');

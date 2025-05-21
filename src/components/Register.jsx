@@ -15,7 +15,7 @@ const Register = () => {
         e.preventDefault();
         try {
             const res = await axios.post(
-                '/api/register',
+                'https://assbackend-859f.onrender.com/api/register',
                 form,
                 {
                     headers: { 'Content-Type': 'application/json' }
