@@ -21,7 +21,7 @@ const Login = () => {
         // }
         try {
             const res = await axios.post(
-                'https://assbackend-859f.onrender.com/api/login',
+                'http://localhost:3001/api/login',
                 { ...form },
                 {
                     headers: { 'Content-Type': 'application/json' },
@@ -30,6 +30,8 @@ const Login = () => {
             );
 
             const data = res.data;
+            console.log(data);
+            sessionStorage.setItem('authToken', res.data.token);
             setMessage(data.message || data.error);
 
             if (data.message === 'Login successful') {
