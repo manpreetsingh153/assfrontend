@@ -8,9 +8,6 @@ const Profile = () => {
         const fetchUser = async () => {
             try {
                 const response = await axios.get('https://assbackend-859f.onrender.com/api/profile', { withCredentials: true });
-                if (response.status === 401 || response.status === 404) {
-                }
-                else
                     setUser(response.data);
             } catch (error) {
                 if (error.response && error.response.status === 401 || error.response.status === 404 || error.message === 'Unauthorized') {

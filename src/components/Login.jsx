@@ -14,11 +14,11 @@ const Login = () => {
  
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const captchaValue = recaptcha.current.getValue()
-        if (!captchaValue) {
-            setMessage('Please verify the reCAPTCHA!');
-            // alert('Please verify the reCAPTCHA!')
-        }
+        // const captchaValue = recaptcha.current.getValue()
+        // if (!captchaValue) {
+        //     setMessage('Please verify the reCAPTCHA!');
+        //     // alert('Please verify the reCAPTCHA!')
+        // }
         try {
             const res = await axios.post(
                 'https://assbackend-859f.onrender.com/api/login',
