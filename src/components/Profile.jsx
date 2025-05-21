@@ -39,6 +39,8 @@ const Profile = () => {
             const res = await axios.get('http://localhost:3001/api/logout', { withCredentials: true });
             if (res.data.message === 'Logged out successfully') {
                 setUser(null);
+                sessionStorage.removeItem('authToken');
+            
                 navigate('/login');
             }
 
