@@ -9,18 +9,9 @@ const Login = () => {
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
     const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
-    const recaptchaRef = useRef(null);
-    const [token, setToken] = useState("");
+
     const recaptcha = useRef();
-    useEffect(() => {
-        if (window.grecaptcha) {
-            window.grecaptcha.ready(() => {
-                window.grecaptcha.render(recaptchaRef.current, {
-                    sitekey: "6Le70EIrAAAAAP8is3TaeHTRotpfZLxm9hc1vcze",
-                });
-            });
-        }
-    }, []);
+ 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const captchaValue = recaptcha.current.getValue()
@@ -28,16 +19,10 @@ const Login = () => {
             setMessage('Please verify the reCAPTCHA!');
             // alert('Please verify the reCAPTCHA!')
         }
-        const recaptchaToken = window.grecaptcha.getResponse();
-        if (!recaptchaToken) {
-            alert("Please complete the reCAPTCHA");
-            return;
-        }
-        setToken(recaptchaToken);
         try {
             const res = await axios.post(
-                'https://assbackend-859f.onrender.com/api/login',
-                { ...form, token: recaptchaToken },
+                '/api/login',
+                { ...form },
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
